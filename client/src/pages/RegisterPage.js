@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { IoClose } from "react-icons/io5";
 
 const RegisterPage = () => {
   const [data, setData] = useState({
@@ -19,10 +20,10 @@ const RegisterPage = () => {
     });
   };
   const handleUploadPhoto = (e) => {
-    const file = e.target.files(0);
+    const file = e.target.files[0];
     setUploadPhoto(file);
   };
-  console.log('uploadPhoto', uploadPhoto)
+  console.log("uploadPhoto", uploadPhoto);
   return (
     <div className="mt-5">
       <div className="bg-white w-full max-w-sm mx-2 rounded overflow-hidden p-4">
@@ -71,7 +72,14 @@ const RegisterPage = () => {
             <label htmlFor="profile_pic">
               photo:
               <div className="h-14 bg-slate-200 flex justify-center items-center border rounded hover:border-primary cursor-pointer">
-                <p className="text-sm">Upload profile photo</p>
+                <p className="text-sm max-w-[300px] ">
+                  {uploadPhoto.name
+                    ? uploadPhoto?.name
+                    : "Upload profile photo"}
+                  <button className="text-lg ml-2 ">
+                    <IoClose />
+                  </button>
+                </p>
               </div>
             </label>
 
