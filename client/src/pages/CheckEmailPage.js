@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { PiUserCircleBold } from "react-icons/pi";
 
 const CheckEmailPage = () => {
   const [data, setData] = useState({
@@ -13,7 +14,7 @@ const CheckEmailPage = () => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setData((prev) => ({ ...prev, [name]: value }));
+    setData((preve) => ({ ...preve, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -28,7 +29,9 @@ const CheckEmailPage = () => {
         setData({
           email: "",
         });
-        navigate("/password");
+        navigate("/password", {
+          state: response?.data?.data
+        });
       }
     } catch (error) {
       toast.error(error?.response?.data?.message || "An error occurred.");
@@ -38,8 +41,11 @@ const CheckEmailPage = () => {
   return (
     <div className="mt-5">
       <div className="bg-white w-full max-w-md rounded overflow-hidden p-4 mx-auto">
+        <div className="w-fit mx-auto mb-2">
+          <PiUserCircleBold size={80} />
+        </div>
         <h3>Welcome to chat app!</h3>
-        <form className="grid gap-4 mt-5" onSubmit={handleSubmit}>
+        <form className="grid gap-4 mt-3" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-1">
             <label htmlFor="email">Email:</label>
             <input
@@ -55,7 +61,7 @@ const CheckEmailPage = () => {
           </div>
 
           <button className="bg-primary text-lg px-4 py-1 hover:bg-secondary rounded mt-4 font-bold text-white leading-relaxed tracking-wide">
-            Register
+            Let's Go
           </button>
         </form>
         <p className="my-3 text-center">
