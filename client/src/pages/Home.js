@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, setUser } from "../redux/userSlice";
 import Sidebar from "../components/Sidebar";
+import logo from "../myAssets/logo.png";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
@@ -21,7 +22,7 @@ const Home = () => {
       });
       dispatch(setUser(response.data.data));
 
-      if (response.data.logout) {
+      if (response.data.data.logout) {
         dispatch(logout());
         navigate("/email");
       }
@@ -39,7 +40,7 @@ const Home = () => {
 
   return (
     <div className="grid lg:grid-cols-[300px,1fr] h-screen max-h-screen">
-      <section className={`bg-white ${!basePath && "hidden" }`}>
+      <section className={`bg-white ${!basePath && "hidden"} lg-block`}>
         <Sidebar />
       </section>
 
@@ -47,6 +48,14 @@ const Home = () => {
       <section className={`${basePath && "hidden"}`}>
         <Outlet />
       </section>
+      <div className="lg:flex justify-center items-center flex-col gap-2 hidden">
+        <div>
+          <img src={logo} width={200} alt="logo" />
+        </div>
+        <p className="text-lg mt-2 text-slate-500">
+          Select user to send message
+        </p>
+      </div>
     </div>
   );
 };
