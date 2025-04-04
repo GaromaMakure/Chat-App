@@ -1,7 +1,13 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+const MessagePage = () => {
+  const params = useParams();
+  console.log("params", params.userId);
 
-const messagePage = () => {
+  useEffect(()=>{
+    
+
+  },[])
   return <div>messagePage</div>;
 };
-
-export default messagePage;
+export default MessagePage;
