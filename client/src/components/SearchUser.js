@@ -5,8 +5,9 @@ import Loading from "./Loading";
 import UserSearchCard from "./UserSearchCard";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { IoClose } from "react-icons/io5";
 
-const SearchUser = ({onClose}) => {
+const SearchUser = ({ onClose }) => {
   const [searchUser, setSearchUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -59,9 +60,17 @@ const SearchUser = ({onClose}) => {
           {searchUser.length !== 0 &&
             !loading &&
             searchUser.map((user) => (
-              <UserSearchCard key={user._id} user={user} />
+              <UserSearchCard key={user._id} user={user} onClose={onClose} />
             ))}
         </div>
+      </div>
+      <div
+        className="absolute top-0 right-0 text-2xl p-2 lg:text-4xl hover:text-white"
+        onClick={onClose}
+      >
+        <button>
+          <IoClose size={50} />
+        </button>
       </div>
     </div>
   );
