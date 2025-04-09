@@ -6,6 +6,8 @@ import Avatar from "./Avatar";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaAngleLeft } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
+import { FaImage } from "react-icons/fa";
+import { FaVideo } from "react-icons/fa";
 const MessagePage = () => {
   const params = useParams();
   const socketConnection = useSelector(
@@ -69,11 +71,34 @@ const MessagePage = () => {
         Show all message
       </section>
       {/* send message */}
-      <section className="h-16 bg-white ">
-        <div className="flex justify-center items-center w-11 h-11 rounded-full hover:bg-primary hover:text-white">
-          <button>
+      <section className="h-16 bg-white flex items-center  ">
+        <div className=" relative">
+          <button className="flex justify-center items-center w-11 h-11 rounded-full hover:bg-primary hover:text-white">
             <FaPlus />
           </button>
+          {/* video and image */}
+          <div className="bg-white shadow rounded absolute bottom-12 w-36 p-2">
+            <form>
+              <label
+                htmlFor="uploadImage"
+                className="flex items-center p-2 gap-3 ox-3  hover:bg-slate-200 cursor-pointer"
+              >
+                <div className="text-primary ">
+                  <FaImage size={18} />
+                </div>
+                <p>image</p>
+              </label>
+              <label
+                htmlFor="uploadVideo"
+                className="flex items-center p-2 gap-3 ox-3  hover:bg-slate-200 cursor-pointer"
+              >
+                <div className="text-purple-500">
+                  <FaVideo size={18} />
+                </div>
+                <p>Video</p>
+              </label>
+            </form>
+          </div>
         </div>
       </section>
     </div>
