@@ -8,6 +8,7 @@ const MessagePage = () => {
   const socketConnection = useSelector(
     (state) => state?.user?.socketConnection
   );
+  const user = useSelector((state) => state?.user);
   const [dataUser, setDataUser] = useState({
     name: "",
     email: "",
@@ -24,11 +25,11 @@ const MessagePage = () => {
         setDataUser(data);
       });
     }
-  }, [socketConnection, params?.userId]);
+  }, [socketConnection, params?.userId, user]);
   return (
     <div>
       <header className="sticky top-0 h-16 bg-white ">
-        <div>
+        <div className="flex items-center gap-4 ">
           <div>
             <Avatar
               width={50}
@@ -39,11 +40,13 @@ const MessagePage = () => {
             />
           </div>
           <div>
-            <h3>{dataUser?.name}</h3>
-            <p>
-              {
-                dataUser.online? "online": "offline"
-              }
+            <h3 className="font-semibold text-lg my-0">{dataUser?.name}</h3>
+            <p className="-my-2">
+              {dataUser.online ? (
+                <span className="text-primary">online</span>
+              ) : (
+                <span className="text-slate-400">offline</span>
+              )}
             </p>
           </div>
         </div>
