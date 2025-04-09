@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, setUser, setOnlineUser } from "../redux/userSlice";
+import {
+  logout,
+  setUser,
+  setOnlineUser,
+  setSocketConnection,
+} from "../redux/userSlice";
 import Sidebar from "../components/Sidebar";
 import logo from "../myAssets/logo.png";
 import io from "socket.io-client";
@@ -48,6 +53,7 @@ const Home = () => {
       console.log(data);
       dispatch(setOnlineUser(data));
     });
+    dispatch(setSocketConnection(socketConnection));
     return () => {
       socketConnection.disconnect();
     };
@@ -57,12 +63,12 @@ const Home = () => {
 
   return (
     <div className="grid lg:grid-cols-[300px,1fr] h-screen max-h-screen">
-      <section className={`bg-white ${!basePath && "hidden"} lg-block`}>
+      <section className={`bg-white ${!basePath && "hidden"} lg:block`}>
         <Sidebar />
       </section>
 
       {/* message component */}
-      <section className={`${basePath && "hidden"}`}>
+      <section className={basePath ? "hidden" : ""}>
         <Outlet />
       </section>
 
