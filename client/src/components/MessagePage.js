@@ -1,8 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Avatar from "./Avatar";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaAngleLeft } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 const MessagePage = () => {
   const params = useParams();
   const socketConnection = useSelector(
@@ -28,8 +31,11 @@ const MessagePage = () => {
   }, [socketConnection, params?.userId, user]);
   return (
     <div>
-      <header className="sticky top-0 h-16 bg-white ">
+      <header className="sticky top-0 h-16 bg-white flex justify-between items-center px-4 ">
         <div className="flex items-center gap-4 ">
+          <Link to={"/"} className="lg:hidden">
+            <FaAngleLeft size={25} />
+          </Link>
           <div>
             <Avatar
               width={50}
@@ -40,8 +46,10 @@ const MessagePage = () => {
             />
           </div>
           <div>
-            <h3 className="font-semibold text-lg my-0">{dataUser?.name}</h3>
-            <p className="-my-2">
+            <h3 className="font-semibold text-lg my-0 text-ellipsis line-clamp-1">
+              {dataUser?.name}
+            </h3>
+            <p className="-my-2 text-sm">
               {dataUser.online ? (
                 <span className="text-primary">online</span>
               ) : (
@@ -50,7 +58,24 @@ const MessagePage = () => {
             </p>
           </div>
         </div>
+        <div>
+          <button className="cursor-pointer hover:text-primary">
+            <BsThreeDotsVertical />
+          </button>
+        </div>
       </header>
+      {/* show all messages */}
+      <section className="h-[calc(100vh-128px)]  bg-cyan-500 overflow-x-hidden overflow-y-scroll scrollbar">
+        Show all message
+      </section>
+      {/* send message */}
+      <section className="h-16 bg-white ">
+        <div className="flex justify-center items-center w-11 h-11 rounded-full hover:bg-primary hover:text-white">
+          <button>
+            <FaPlus />
+          </button>
+        </div>
+      </section>
     </div>
   );
 };
