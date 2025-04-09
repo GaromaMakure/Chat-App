@@ -8,8 +8,26 @@ const getUserDetailsFromToken = async (token) => {
       logout: true,
     };
   }
-  const decode = await jwt.verify(token, process.env.JWT_SECREAT_KEY);
-  const user = await UserModel.findById(decode.id);
-  return user;
+
+  try {
+    const decode = jwt.verify(token, process.env.JWT_SECREAT_KEY);
+    const user = await UserModel.findById(decode.id);
+    return user;
+  } catch (err) {
+    if (err.name === "TokenExpiredError") {
+      console.error("Token has expired.");
+      return {
+        message: "session expired",
+        logout: true,
+      };
+    } else {
+      console.error("Token verification failed:", err.message);
+      return {
+        message: "invalid token",
+        logout: true,
+      };
+    }
+  }
 };
+
 module.exports = getUserDetailsFromToken;
