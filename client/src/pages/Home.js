@@ -9,7 +9,7 @@ import {
   setUser,
 } from "../redux/userSlice";
 import Sidebar from "../components/Sidebar";
-import logo from "../assets/logo.png";
+import logo from "../myAssets/logo.png";
 import io from "socket.io-client";
 
 const Home = () => {
