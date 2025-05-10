@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { IoClose } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import uploadFile from "../helpers/uploadFile";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { PiUserCircle } from "react-icons/pi";
@@ -14,13 +12,10 @@ const CheckEmailPage = () => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-
-    setData((preve) => {
-      return {
-        ...preve,
-        [name]: value,
-      };
-    });
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -31,13 +26,10 @@ const CheckEmailPage = () => {
 
     try {
       const response = await axios.post(URL, data);
-
       toast.success(response.data.message);
 
       if (response.data.success) {
-        setData({
-          email: "",
-        });
+        setData({ email: "" });
         navigate("/password", {
           state: response?.data?.data,
         });
@@ -48,38 +40,59 @@ const CheckEmailPage = () => {
   };
 
   return (
-    <div className="mt-5">
-      <div className="bg-white w-full max-w-md  rounded overflow-hidden p-4 mx-auto">
-        <div className="w-fit mx-auto mb-2">
+    <div
+      className="min-h-screen flex items-center justify-center px-4"
+      style={{
+        background: "linear-gradient(to top right, #8360c3, #2ebf91)",
+      }}
+    >
+      <div className="backdrop-blur-lg bg-white/80 w-full max-w-md rounded-2xl shadow-2xl p-8 border border-white/30">
+        <div className="w-fit mx-auto mb-4 text-gray-800">
           <PiUserCircle size={80} />
         </div>
 
-        <h3>Welcome to Chat app!</h3>
+        <h3 className="text-center text-2xl font-bold text-gray-900 mb-1">
+          Check Your Email
+        </h3>
+        <p className="text-center text-sm text-gray-600 mb-6">
+          Enter your email address to verify and continue
+        </p>
 
-        <form className="grid gap-4 mt-3" onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="email">Email :</label>
+        <form className="grid gap-4" onSubmit={handleSubmit}>
+          <div className="flex flex-col gap-2">
+            <label
+              htmlFor="email"
+              className="text-sm font-medium text-gray-700"
+            >
+              Email Address
+            </label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="enter your email"
-              className="bg-slate-100 px-2 py-1 focus:outline-primary"
+              placeholder="you@example.com"
+              className="bg-white px-4 py-2 rounded-lg border border-gray-300 shadow-inner focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-800 transition"
               value={data.email}
               onChange={handleOnChange}
               required
             />
           </div>
 
-          <button className="bg-primary text-lg  px-4 py-1 hover:bg-secondary rounded mt-2 font-bold text-white leading-relaxed tracking-wide">
+          <button
+            type="submit"
+            className="bg-gradient-to-r from-emerald-500 to-teal-400 text-white text-lg px-4 py-2 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-200"
+          >
             Let's Go
           </button>
         </form>
 
-        <p className="my-3 text-center">
-          New User ?{" "}
-          <Link to={"/register"} className="hover:text-primary font-semibold">
-            Register
+        <p className="mt-6 text-center text-sm text-gray-700">
+          New here?{" "}
+          <Link
+            to="/register"
+            className="text-emerald-600 font-medium underline hover:text-emerald-800"
+          >
+            Create an account
           </Link>
         </p>
       </div>
