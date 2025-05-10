@@ -9,6 +9,7 @@ const initialState = {
   onlineUser: [],
   socketConnection: null,
 };
+
 export const userSlice = createSlice({
   name: "user",
   initialState,

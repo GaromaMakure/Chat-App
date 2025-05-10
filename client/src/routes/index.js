@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import CheckEmailPage from "../pages/CheckEmailPage";
+import App from "../App";
 import RegisterPage from "../pages/RegisterPage";
+import CheckEmailPage from "../pages/CheckEmailPage";
 import CheckPasswordPage from "../pages/CheckPasswordPage";
 import Home from "../pages/Home";
 import MessagePage from "../components/MessagePage";
-import App from "../App";
-import AutoLayouts from "../layout";
-import ForgotPassword from "../pages/ForgotPassword";
+import AuthLayouts from "../layout";
+import Forgotpassword from "../pages/Forgotpassword";
 
 const router = createBrowserRouter([
   {
@@ -16,33 +16,33 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: (
-          <AutoLayouts>
+          <AuthLayouts>
             <RegisterPage />
-          </AutoLayouts>
+          </AuthLayouts>
         ),
       },
       {
         path: "email",
         element: (
-          <AutoLayouts>
+          <AuthLayouts>
             <CheckEmailPage />
-          </AutoLayouts>
+          </AuthLayouts>
         ),
       },
       {
         path: "password",
         element: (
-          <AutoLayouts>
+          <AuthLayouts>
             <CheckPasswordPage />
-          </AutoLayouts>
+          </AuthLayouts>
         ),
       },
       {
         path: "forgot-password",
         element: (
-          <AutoLayouts>
-            <ForgotPassword />
-          </AutoLayouts>
+          <AuthLayouts>
+            <Forgotpassword />
+          </AuthLayouts>
         ),
       },
       {
@@ -58,4 +58,5 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 export default router;

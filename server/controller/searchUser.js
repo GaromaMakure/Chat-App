@@ -1,14 +1,15 @@
-const userModel = require("../models/UserModel");
+const UserModel = require("../models/UserModel");
 
 async function searchUser(request, response) {
   try {
     const { search } = request.body;
+
     const query = new RegExp(search, "i", "g");
-    const user = await userModel
-      .find({
-        $or: [{ name: query }, { email: query }],
-      })
-      .select("-password");
+
+    const user = await UserModel.find({
+      $or: [{ name: query }, { email: query }],
+    }).select("-password");
+
     return response.json({
       message: "all user",
       data: user,
@@ -21,4 +22,5 @@ async function searchUser(request, response) {
     });
   }
 }
+
 module.exports = searchUser;
