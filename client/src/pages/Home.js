@@ -81,9 +81,9 @@ const Home = () => {
         }`}
       >
         <div>
-          <img src={mylogo1} width={250} alt="logo" />
+          <img src={mylogo1} width={400} alt="logo" />
         </div>
-        <p className="text-lg mt-2 text-green font-bold">
+        <p className="text-lg text-red-700 font-bold">
           Select user to send message
         </p>
       </div>

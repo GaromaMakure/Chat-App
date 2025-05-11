@@ -150,8 +150,13 @@ const MessagePage = () => {
 
   return (
     <div
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-      className="bg-no-repeat bg-cover"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      className="w-full h-full"
     >
       <header className="sticky top-0 h-16 bg-white flex justify-between items-center px-4">
         <div className="flex items-center gap-4">
