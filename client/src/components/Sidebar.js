@@ -65,12 +65,12 @@ const Sidebar = () => {
 
   return (
     <div className="w-full h-full grid grid-cols-[48px,1fr] bg-white">
-      <div className="bg-slate-100 w-12 h-full rounded-tr-lg rounded-br-lg py-5 text-slate-600 flex flex-col justify-between">
+      <div className="bg-green-500 w-12 h-full rounded-tr-lg rounded-br-lg py-5 text-slate-600 flex flex-col justify-between">
         <div>
           <NavLink
             className={({ isActive }) =>
               `w-12 h-12 flex justify-center items-center cursor-pointer hover:bg-slate-200 rounded ${
-                isActive && "bg-slate-200"
+                isActive && "bg-blue-200"
               }`
             }
             title="chat"
@@ -114,8 +114,8 @@ const Sidebar = () => {
       </div>
 
       <div className="w-full">
-        <div className="h-16 flex items-center">
-          <h2 className="text-xl font-bold p-4 text-slate-800">Message</h2>
+        <div className="h-16 flex items-center bg-pink-700">
+          <h2 className="text-xl font-bold p-4 text-black">Message</h2>
         </div>
         <div className="bg-slate-200 p-[0.5px]"></div>
 
@@ -150,7 +150,11 @@ const Sidebar = () => {
                   <h3 className="text-ellipsis line-clamp-1 font-semibold text-base">
                     {conv?.userDetails?.name}
                   </h3>
-                  <div className="text-slate-500 text-xs flex items-center gap-1">
+                  <div
+                    className={`text-xs flex items-center gap-1 ${
+                      conv?.unseenMsg ? "text-red-600" : "text-slate-500"
+                    }`}
+                  >
                     <div className="flex items-center gap-1">
                       {conv?.lastMsg?.imageUrl && (
                         <div className="flex items-center gap-1">
@@ -185,12 +189,10 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/**edit user details*/}
       {editUserOpen && (
         <EditUserDetails onClose={() => setEditUserOpen(false)} user={user} />
       )}
 
-      {/**search user */}
       {openSearchUser && (
         <SearchUser onClose={() => setOpenSearchUser(false)} />
       )}

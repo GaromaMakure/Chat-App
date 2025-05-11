@@ -10,7 +10,7 @@ import { FaVideo } from "react-icons/fa6";
 import uploadFile from "../helpers/uploadFile";
 import { IoClose } from "react-icons/io5";
 import Loading from "./Loading";
-import backgroundImage from "../myAssets/wallapaper.jpeg";
+import backgroundImage from "../myAssets/bg2.jpg";
 import { IoMdSend } from "react-icons/io";
 import moment from "moment";
 

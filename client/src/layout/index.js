@@ -1,11 +1,11 @@
 import React from "react";
-import logo from "../myAssets/logo.png";
+import mylogo1 from "../myAssets/mylogo1.png";
 
 const AuthLayouts = ({ children }) => {
   return (
     <>
-      <header className="flex justify-center items-center py-3 h-20 shadow-md bg-white">
-        <img src={logo} alt="logo" width={180} height={60} />
+      <header className="flex justify-center items-center py-3 h-20 shadow-md bg-blue-700">
+        <img src={mylogo1} alt="logo" width={300} height={200} />
       </header>
 
       {children}
