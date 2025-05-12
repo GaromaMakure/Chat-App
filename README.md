@@ -6,8 +6,8 @@ A full-featured real-time chat application built using **React**, **Node.js**, *
 
 ## 🚀 Live Demo
 
-- **Frontend** (Vercel): [https://your-frontend-url.vercel.app](chat-app-gold-six.vercel.app)
-- **Backend** (Render): [https://your-backend-url.onrender.com]((https://chat-app-u6i1.onrender.com))
+- **Frontend** (Vercel): (chat-app-gold-six.vercel.app)
+- **Backend** (Render): ((https://chat-app-u6i1.onrender.com))
 
 ---
 
